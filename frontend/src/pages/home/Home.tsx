@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
-import { Paths } from "../../config/routes";
+import { Header } from "../../components/header/Header";
 
-export default function Home(){
-    return(
+export default function Home() {
+    return (
         <div>
-            <Link to={Paths.LOGIN}>Log In</Link>
+            <Header />
         </div>
     )
 }
