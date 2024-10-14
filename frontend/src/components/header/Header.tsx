@@ -22,11 +22,11 @@ export function Header() {
     }, []);
 
     return (
-        <Navbar className="mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6">
+        <Navbar className="mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6 top-1.5 my-1.5">
             <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
                 <Typography
                     as="a"
-                    href="#"
+                    href="/"
                     className="mr-4 ml-2 cursor-pointer py-1.5 font-medium"
                 >
                     WorksApp

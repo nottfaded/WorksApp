@@ -32,6 +32,37 @@ namespace backend
                 options.TokenValidationParameters = jwtService.GetTokenValidationParameters();
             });
             builder.Services.AddScoped<JwtService>();
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
+            //.AddJwtBearer(options =>
+            //{
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuer = true,
+            //        ValidateAudience = true,
+            //        ValidateLifetime = true,
+            //        ValidateIssuerSigningKey = true,
+            //        ValidIssuer = configuration["Jwt:Issuer"],
+            //        ValidAudience = configuration["Jwt:Audience"],
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+            //    };
+
+            //    options.Events = new JwtBearerEvents
+            //    {
+            //        OnMessageReceived = context =>
+            //        {
+            //            var token = context.Request.Cookies["access_token"];
+            //            if (!string.IsNullOrEmpty(token))
+            //            {
+            //                context.Token = token;
+            //            }
+            //            return Task.CompletedTask;
+            //        }
+            //    };
+            //});
 
             services.AddScoped<IAccount, AccountRepository>();
 
@@ -44,6 +75,20 @@ namespace backend
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 db.Database.Migrate();
 
+                //if (env.IsProduction())
+                //{
+                //    db.Database.ExecuteSqlRaw("SET GLOBAL event_scheduler = ON;");
+
+                //    db.Database.ExecuteSqlRaw(@"
+                //    DROP EVENT IF EXISTS CleanUpSessions;
+                //    CREATE EVENT IF NOT EXISTS CleanUpSessions
+                //    ON SCHEDULE EVERY 1 HOUR
+                //    DO
+                //    BEGIN
+                //        DELETE FROM sessions WHERE ExpiresAtTime < UTC_TIMESTAMP();
+                //    END;");
+
+                //}
             }
 
             app.UseCors(op =>
@@ -62,6 +107,8 @@ namespace backend
             //app.UseHttpsRedirection();
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            //app.UseSession();
+            //app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -1,8 +1,28 @@
-import { ChevronDownIcon, PowerIcon } from "@heroicons/react/16/solid";
+import { ChevronDownIcon, Cog6ToothIcon, PowerIcon } from "@heroicons/react/16/solid";
 import { Avatar, Button, Menu, MenuHandler, MenuItem, MenuList, Typography } from "@material-tailwind/react";
 import { createElement, useState } from "react";
+import { Paths } from "../../config/routes";
 
 const profileMenuItems = [
+    // {
+    //     label: "My Profile",
+    //     icon: UserCircleIcon,
+    // },
+    {
+        label: "Edit Profile",
+        icon: Cog6ToothIcon,
+        onClick: () => {
+            window.location.href = Paths.EDIT_PROFILE;
+        }
+    },
+    // {
+    //     label: "Inbox",
+    //     icon: InboxArrowDownIcon,
+    // },
+    // {
+    //     label: "Help",
+    //     icon: LifebuoyIcon,
+    // },
     {
         label: "Sign Out",
         icon: PowerIcon,

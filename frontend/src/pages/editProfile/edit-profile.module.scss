@@ -1,0 +1,22 @@
+.editProfile{
+    background-color: white;
+    // border-top-left-radius: 50px;
+    // border-top-right-radius: 50px;
+    border-radius: 50px;
+    padding: 50px;
+}
+
+.profileNav{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-weight: bold;
+
+    & > li{
+        opacity: 0.5;
+    }
+    & .active{
+        opacity: 1;
+    }
+    
+}
