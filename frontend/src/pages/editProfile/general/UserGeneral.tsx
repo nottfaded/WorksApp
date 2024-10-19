@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 import { CONSTANTS } from "../../../config/constants";
 import { Input, Select, Option, Button, Card, ListItem, ListItemPrefix, Typography, Checkbox } from "@material-tailwind/react";
 import { CountriesSelect } from "./GeneralEdit";
+import axiosInstance from "../../../api/axiosInstance";
+import { config } from "../../../config/config";
 
 const SKILLS_ARRAY = ['ASP.NET', 'Entity Framework', 'React', 'Angular', 'Javascript', 'Typescript', 'C#',
     'MSSQL', 'MySQL', 'C++', 'Svetle', 'Redis'
@@ -38,19 +40,19 @@ interface IGeneralUserData {
 
 export function EditUser({ userData, setData }: { userData: IUser, setData : (value: IUser) => void }) {
     const [formData, setFormData] = useState<IGeneralUserData>({
-        jobTitle: '',
-        skills: [],
-        experience: '',
-        expSalary: '',
-        engLvl: '',
-        country: '',
-        linkedIn: '',
-        gitHub: ''
+        jobTitle: userData.jobTitle,
+        skills: userData.skills,
+        experience: userData.experience,
+        expSalary: userData.expSalary,
+        engLvl: userData.engLvl,
+        country: userData.country,
+        linkedIn: userData.linkedIn,
+        gitHub: userData.gitHub
     });
     const [isChanged, setIsChanged] = useState(false);
 
     useEffect(() => {
-        const isChanged = (Object.keys(formData) as Array<keyof IGeneralUserData>).some(key => formData[key] !== userData[key]);
+        const isChanged = (Object.keys(formData) as Array<keyof IGeneralUserData>).some(key => JSON.stringify(formData[key]) !== JSON.stringify(userData[key]));
         setIsChanged(isChanged);
     }, [formData]);
 
@@ -82,10 +84,7 @@ export function EditUser({ userData, setData }: { userData: IUser, setData : (va
     }
 
     const saveChanges = async (): Promise<void> => {
-        const promise = new Promise<void>((resolve) => {
-            setTimeout(resolve, 500);
-        })
-
+        const promise = axiosInstance.post(`${config.apiBaseUrl}/editProfile/user`, formData)
         await toast.promise(promise, {
             loading: CONSTANTS.toastLoading,
             success: (_) => {
@@ -103,7 +102,7 @@ export function EditUser({ userData, setData }: { userData: IUser, setData : (va
 
                 return 'Success saved user data'
             },
-            error: (_) => ''
+            error: (err) => err.message
         })
     }
 

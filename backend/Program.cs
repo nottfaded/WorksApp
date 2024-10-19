@@ -1,6 +1,7 @@
 using System.Text;
 using backend.Helpers;
 using backend.Interfaces;
+using backend.Mappers;
 using backend.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,8 @@ namespace backend
             var configuration = builder.Configuration;
             var env = builder.Environment;
             var jwtService = new JwtService(configuration);
+
+            services.AddAutoMapper(typeof(UserProfile), typeof(CorporationProfile));
 
             services.AddControllers();
 
@@ -64,7 +67,7 @@ namespace backend
             //    };
             //});
 
-            services.AddScoped<IAccount, AccountRepository>();
+            services.AddScoped<IAccountService, AccountRepository>();
 
 
 

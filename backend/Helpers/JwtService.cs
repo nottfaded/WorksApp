@@ -18,7 +18,7 @@ namespace backend.Helpers
 
             var claims = new List<Claim>
             {
-                new(Id, account.Id.ToString()),
+                new(ClaimTypes.NameIdentifier, account.Id.ToString()),
                 new(ClaimTypes.Email, account.Email),
                 new(ClaimTypes.Role, account.Role.ToString()),
             };

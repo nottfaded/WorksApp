@@ -15,7 +15,7 @@ namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController(IAccount accRep, IConfiguration configuration, JwtService jwtService) : ControllerBase
+    public class AuthController(IAccountService accRep, IConfiguration configuration, JwtService jwtService) : ControllerBase
     {
         //[HttpGet("get")]
         //[JwtAuthorize]
@@ -93,8 +93,16 @@ namespace backend.Controllers
                         user.Id,
                         user.Email,
                         Role = user.Role.ToString(),
-                        user.Firtname,
+                        user.Firstname,
                         user.Lastname,
+                        user.JobTitle,
+                        user.Skills,
+                        user.Experience,
+                        user.ExpSalary,
+                        user.EngLvl,
+                        user.Country,
+                        user.LinkedIn,
+                        user.GitHub,
                     };
                     break;
                 case Corporation corporation:
@@ -104,6 +112,10 @@ namespace backend.Controllers
                         corporation.Email,
                         Role = corporation.Role.ToString(),
                         corporation.CompanyName,
+                        corporation.Description,
+                        corporation.Country,
+                        corporation.Site,
+                        corporation.Phone,
                     };
                     break;
             }

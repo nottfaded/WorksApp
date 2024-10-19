@@ -20,7 +20,7 @@ export function EditCorporation({ corpData, setData }: { corpData: ICorporation,
     const [isChanged, setIsChanged] = useState(false);
 
     useEffect(() => {
-        const isChanged = (Object.keys(formData) as Array<keyof IGeneralCorpData>).some(key => formData[key] !== corpData[key]);
+        const isChanged = (Object.keys(formData) as Array<keyof IGeneralCorpData>).some(key => JSON.stringify(formData[key]) !== JSON.stringify(corpData[key]));
         setIsChanged(isChanged);
     }, [formData]);
 

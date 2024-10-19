@@ -19,13 +19,11 @@ export function EditProfile() {
     }, [loading]);
 
     return (
-        // <div className='centerContainer max-w-5xl'>
         <div className='container mx-auto'>
 
             <Header />
 
             <div className="mt-3">
-                {/* <div className={styles.editProfile}> */}
                 <div className='container mx-auto bg-white p-12 rounded-3xl max-w-5xl'>
                     {loading
                         ? (

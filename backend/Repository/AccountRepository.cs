@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repository
 {
-    public class AccountRepository(AppDbContext context) : IAccount
+    public class AccountRepository(AppDbContext context) : IAccountService
     {
         public async Task AddAccount(Role role, string email, string password)
         {

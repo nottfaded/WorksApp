@@ -2,7 +2,7 @@
 
 namespace backend.Interfaces
 {
-    public interface IAccount
+    public interface IAccountService
     {
         public Task AddAccount(Role role, string email, string password);
         public Task<List<AccountBase>> GetAllAccountsAsync();

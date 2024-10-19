@@ -44,7 +44,7 @@ namespace backend
                     Id = 1,
                     Email = "u@u",
                     Password = "$2a$11$kp1DevIoes7ZhcQbmRnFFe/0VEh65I1bCGrO4pcGtDVL3GxRsqGWa",
-                    Firtname = "John",
+                    Firstname = "John",
                     Lastname = "Doe",
                     Role = Role.User
                 }
